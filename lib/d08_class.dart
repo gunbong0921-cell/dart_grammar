@@ -56,5 +56,6 @@ void main() {
    */
   const cardA = CustomCard(title: '고정 타이틀', cnt: 1);
   const cardB = CustomCard(title: '고정 타이틀', cnt: 1);
+  // identical() 함수를 사용하여 두 객체가 동일한 인스턴스를 참조하는지 확인
   print('cardA와 cardB의 주소비교 ?: ${identical(cardA, cardB)}'); // true, 메모리 캐싱 확인
 }
