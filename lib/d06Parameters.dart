@@ -1,36 +1,43 @@
-// 위치 매개변수(positional)
+// 위치 매개변수(positional) : 순서대로 값을 전달해야 함
 void printUserInfo(String name, int age) {
   print('이름: $name, 나이: $age세');
 }
 
 // 이름 있는 매개변수(Named Parameters)
+/**
+순서를 마음대로 바꿀 수 있음. required는 필수사항, 나머지는 옵션. 기본값을 지정하면 호출 시 생략했을때
+기본값이 적용된다. 
+ */
 void createCustomButton({
-  required String label, 
+  required String label,
   String color = 'blue',
   double width = 120.0,
   bool isEnabled = true,
+  // 클릭 시 실행할 콜백함수(Nullable로 지정)
   void Function()? onClick,
 }) {
   print('라벨: $label, 색상: $color, 가로폭: $width, 활성상태: $isEnabled');
+  //전달받은 콜백함수가 있다면 로그를 출력한 후 실행
   if (onClick != null) {
     print(' - 클릭 이벤트를 트리거합니다:');
     onClick();
-  }
-  else {
+  } else {
     print(' - 연결된 클릭 이벤트가 없습니다.');
   }
 }
 
 void main() {
   print('위치 매개변수 vs 이름 있는 매개변수 호출');
+  // 위치 매개변수는 순서를 꼭 지켜야 함
   printUserInfo('이지은', 30);
 
-  createCustomButton(
-    label: '로그인',
-    color: 'indigo',
-    width: 200.0,
-  );
-  
+  /**
+  이름이 있는 매개변수는 순서와 상관없이 키(이름)으로 값을 지정.
+  Flutter 위젯(Text, Button 등)을 만들때 이와같은 방식을 사용한다.
+   */
+  createCustomButton(label: '로그인', color: 'indigo', width: 200.0);
+
+  // 인수로 콜백함수를 전달함. 즉 함수형 프로그래밍이 가능하다.
   createCustomButton(
     label: '장바구니 담기',
     color: 'orange',
@@ -40,6 +47,7 @@ void main() {
   );
 
   print('\n화살표 함수');
+  // 중괄호 { return 값;} 을 간단히 => 값 형식으로 줄여서 정의
   int add(int a, int b) => a + b;
   bool isEven(int n) => n % 2 == 0;
 
